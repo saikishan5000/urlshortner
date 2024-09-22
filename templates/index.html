@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>URL Shortener</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ff4444;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #ff3333;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px #000;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            margin: 15px 0;
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: #1c1c1c;
+            color: #fff;
+            font-size: 1rem;
+            border-bottom: 3px solid #ff3333;
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: #ff0000;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        input[type="text"]::placeholder {
+            color: #999;
+        }
+
+        input[type="text"]:focus {
+            border-bottom: 3px solid #ff4444;
+        }
+
+        .short-url {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #ff3333;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .short-url a {
+            color: #ff3333;
+            text-decoration: none;
+        }
+
+        .short-url a:hover {
+            text-decoration: underline;
+            color: #ff1111;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>URL Shortener</h1>
+    <form method="POST" action="{{ url_for('index') }}">
+        <input type="text" name="long_url" placeholder="Enter long URL" required>
+        <button type="submit">Shorten URL</button>
+    </form>
+
+    {% if short_url %}
+    <div class="short-url">
+        <p>Shortened URL: <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
+    </div>
+    {% endif %}
+</body>
+
+</html>
